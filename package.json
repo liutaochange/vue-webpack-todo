@@ -1,0 +1,29 @@
+{
+  "name": "vue-knowledge",
+  "version": "1.0.0",
+  "description": "vue vuex vue-router",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liutaochange/vue-knowledge.git"
+  },
+  "author": "liutaochange@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liutaochange/vue-knowledge/issues"
+  },
+  "homepage": "https://github.com/liutaochange/vue-knowledge#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "vue": "^2.5.16"
+  }
+}
