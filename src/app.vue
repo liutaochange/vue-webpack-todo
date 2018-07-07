@@ -13,7 +13,7 @@
 <style scoped>
   .text{
     font-size: 16px;
-    color: brown
+    color: brown;
   }
 </style>
 

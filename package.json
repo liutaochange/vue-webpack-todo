@@ -4,7 +4,7 @@
   "description": "vue vuex vue-router",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode none --config ./build/webpack.config.base.js"
   },
   "repository": {
     "type": "git",
