@@ -1,5 +1,6 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   mode: 'none',
   entry: [
@@ -13,17 +14,40 @@ module.exports = {
   module: {
     rules: [
       { test: /\.vue$/, use: 'vue-loader' },
-      { test: /\.css$/, use: 'css-loader' },
+      { 
+        test: /\.css$/, 
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ]
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 1024
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new VueLoaderPlugin()
   ]
 }
