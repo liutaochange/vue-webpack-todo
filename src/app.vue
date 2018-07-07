@@ -10,7 +10,7 @@
     }
   }
 </script>
-<style scoped>
+<style scoped lang="css">
   .text{
     font-size: 16px;
     color: brown;
