@@ -2,6 +2,7 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
+  target: 'web',
   mode: 'none',
   entry: [
     "babel-polyfill",
@@ -42,6 +43,19 @@ module.exports = {
               limit: 1024
             }
           }
+        ]
+      },
+      { 
+        test: /\.styl$/, 
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          {loader: 'stylus-loader'}
         ]
       }
     ]
