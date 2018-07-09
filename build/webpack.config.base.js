@@ -1,7 +1,10 @@
 const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-module.exports = {
+const HtmlWebpackPlugin = require('html-webpack-plugin'); 
+const isDev = process.env.NODE_ENV === 'development'
+const config = {
   target: 'web',
   mode: 'none',
   entry: [
@@ -61,7 +64,35 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: isDev ? '"development"' : '"production"'
+      }
+    }),
     new CleanWebpackPlugin(['dist']),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin()
   ]
 }
+
+if (isDev) {
+  config.devServer = {
+    open: true,
+    contentBase: path.join(__dirname, '../dist'),
+    compress: false,
+    host: 'localhost',
+    port: 9000,
+    overlay: {
+      warnings: true,
+      errors: true
+    },
+    hot: true
+  }
+  config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  )
+}
+
+module.exports = config
