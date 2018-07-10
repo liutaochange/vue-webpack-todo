@@ -71,7 +71,15 @@ const config = {
     }),
     new CleanWebpackPlugin(['dist']),
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(),
+    new webpack.optimize.SplitChunksPlugin({
+        chunks: "all",
+        minSize: 20000,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        name: true
+    })
   ]
 }
 

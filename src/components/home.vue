@@ -1,23 +1,21 @@
 <template>
-  <div class="text">
+  <div class="home">
     <p>{{text}}</p>
-    <router-link to="/home">跳转至主页</router-link>
-    <router-view></router-view>
   </div>
 </template>
 <script>
   export default{
     data () {
       return {
-        text: 'vue project'
+        text: 'i am home'
       }
     }
   }
 </script>
 <style scoped>
-  .text{
+  .home{
     font-size: 16px;
-    color: brown;
+    color: hotpink;
   }
 </style>
 
