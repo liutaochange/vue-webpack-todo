@@ -18,6 +18,7 @@ const config = {
   module: {
     rules: [
       { test: /\.vue$/, use: 'vue-loader' },
+      { test: /\.jsx$/, use: 'babel-loader' },
       { 
         test: /\.css$/, 
         use: [
@@ -52,10 +53,12 @@ const config = {
         test: /\.styl$/, 
         use: [
           { loader: 'style-loader' },
+          { loader: 'css-loader' },
           {
-            loader: 'css-loader',
+            loader: 'postcss-loader',
             options: {
-              modules: true
+              modules: true,
+              sourceMap: true
             }
           },
           {loader: 'stylus-loader'}
