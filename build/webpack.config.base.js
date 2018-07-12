@@ -28,7 +28,8 @@ const config = {
             options: {
               modules: true
             }
-          }
+          },
+          {loader: 'postcss-loader' }
         ]
       },
       {
@@ -59,9 +60,9 @@ const config = {
         ]
       },
       { 
-        test: /\.styl$/, 
+        test: /\.styl(us)?$/,
         use: [
-          { loader: 'style-loader' },
+          { loader: 'vue-style-loader' },
           { loader: 'css-loader' },
           { loader: 'stylus-loader' }
         ]

@@ -12,7 +12,7 @@
     }
   }
 </script>
-<style scoped>
+<style scoped lang="stylus">
   .home{
     font-size: 16px;
     color: hotpink;

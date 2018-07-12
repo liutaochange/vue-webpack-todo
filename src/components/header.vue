@@ -12,16 +12,14 @@ export default {
   }
 };
 </script>
-<style scoped lang="css">
-.header {
+<style scoped lang="stylus">
+.header
   width: 100%;
   text-align: center;
-}
-.title {
-  font-size: 100px;
-  color: rgba(175, 47, 47, 0.4);
-  font-weight: 100;
-  margin: 20px;
-}
+  .title
+    font-size: 100px;
+    color: rgba(175, 47, 47, 0.4);
+    font-weight: 100;
+    margin: 20px;
 </style>
 
