@@ -3,12 +3,14 @@ const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
+const StyleOptions = require('../stylelint.config.js')
 const isDev = process.env.NODE_ENV === 'development'
 const config = {
   target: 'web',
-  mode: 'none',
+  mode: 'development',
   entry: [
-    "babel-polyfill",
+    'babel-polyfill',
     path.join(__dirname, '../src/index.js')
   ],
   output: {
@@ -17,10 +19,8 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.vue$/, use: 'vue-loader' },
-      { test: /\.jsx$/, use: 'babel-loader' },
-      { 
-        test: /\.css$/, 
+      {
+        test: /\.css$/,
         use: [
           { loader: 'vue-style-loader' },
           {
@@ -29,23 +29,25 @@ const config = {
               modules: true
             }
           },
-          {loader: 'postcss-loader' }
+          { loader: 'postcss-loader' }
         ]
       },
       {
-        test: /\.js$/,
+        test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: "pre",
-        include: [path.resolve(__dirname, '../src')],  // 指定检查的目录
-        options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
+        enforce: 'pre',
+        include: [path.resolve(__dirname, '../src')],
+        exclude: /node_modules/,
+        options: {
           formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
         }
       },
+      { test: /\.vue$/, use: 'vue-loader' },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
@@ -59,14 +61,15 @@ const config = {
           }
         ]
       },
-      { 
+      {
         test: /\.styl(us)?$/,
         use: [
           { loader: 'vue-style-loader' },
           { loader: 'css-loader' },
           { loader: 'stylus-loader' }
         ]
-      }
+      },
+      { test: /\.jsx$/, use: 'babel-loader' }
     ]
   },
   plugins: [
@@ -79,13 +82,14 @@ const config = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.optimize.SplitChunksPlugin({
-        chunks: "all",
-        minSize: 20000,
-        minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        name: true
-    })
+      chunks: 'all',
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true
+    }),
+    new StyleLintPlugin(StyleOptions)
   ]
 }
 
