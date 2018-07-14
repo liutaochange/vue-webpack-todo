@@ -22,7 +22,7 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          { loader: 'vue-style-loader' },
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
@@ -64,7 +64,7 @@ const config = {
       {
         test: /\.styl(us)?$/,
         use: [
-          { loader: 'vue-style-loader' },
+          { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'stylus-loader' }
         ]
