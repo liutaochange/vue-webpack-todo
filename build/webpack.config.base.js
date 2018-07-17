@@ -15,7 +15,7 @@ const config = {
   ],
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: 'bundle.js'
+    filename: '[name]-[chunkhash].js'
   },
   module: {
     rules: [
@@ -91,7 +91,9 @@ const config = {
     }),
     new CleanWebpackPlugin(['dist']),
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
     new webpack.optimize.SplitChunksPlugin({
       chunks: 'all',
       minSize: 20000,
