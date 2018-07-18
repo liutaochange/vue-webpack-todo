@@ -15,7 +15,7 @@ export default {
   data () {
     return {
       text: 'vue project'
-    };
+    }
   },
   components: {
     headerItem

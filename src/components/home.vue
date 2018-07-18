@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      text: "i am home"
+      text: 'i am home'
     }
   }
 }

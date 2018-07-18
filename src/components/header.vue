@@ -5,12 +5,12 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      text: "JTODO"
-    };
+      text: 'JTODO'
+    }
   }
-};
+}
 </script>
 <style scoped lang="stylus">
 .header

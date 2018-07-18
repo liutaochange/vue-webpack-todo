@@ -4,8 +4,8 @@
   "description": "vue vuex vue-router",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode none --config ./build/webpack.config.base.js",
-    "build": "cross-env NODE_ENV=production webpack --mode none --config ./build/webpack.config.base.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./build/webpack.config.base.js",
+    "build": "cross-env NODE_ENV=production webpack --mode production --config ./build/webpack.config.base.js"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
     "eslint-config-vue": "^2.0.2",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-html": "^3.0.0",
+    "eslint-plugin-html": "^3.2.2",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",

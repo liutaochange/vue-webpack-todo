@@ -9,16 +9,26 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = {
   target: 'web',
   mode: 'development',
-  entry: [
-    'babel-polyfill',
-    path.join(__dirname, '../src/index.js')
-  ],
+  entry: {
+    app: path.join(__dirname, '../src/index.js')
+  },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name]-[chunkhash].js'
+    filename: '[name]-[hash].js'
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [path.resolve(__dirname, '../src')],
+        exclude: /node_modules/,
+        options: {
+          formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+        }
+      },
+      { test: /\.vue$/, use: 'vue-loader' },
       {
         test: /\.css$/,
         use: [
@@ -32,17 +42,6 @@ const config = {
           { loader: 'postcss-loader' }
         ]
       },
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [path.resolve(__dirname, '../src')],
-        exclude: /node_modules/,
-        options: {
-          formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-        }
-      },
-      { test: /\.vue$/, use: 'vue-loader' },
       {
         test: /\.js$/,
         exclude: /node_modules/,
