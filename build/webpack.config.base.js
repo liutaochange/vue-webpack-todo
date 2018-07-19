@@ -83,16 +83,18 @@ const config = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      title: 'app',
+      inject: true
+    }),
+    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: isDev ? '"development"' : '"production"'
       }
     }),
-    new CleanWebpackPlugin(['dist']),
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.html'
-    }),
     new webpack.optimize.SplitChunksPlugin({
       chunks: 'all',
       minSize: 20000,
