@@ -10,10 +10,10 @@ const config = {
   target: 'web',
   mode: 'development',
   entry: {
-    app: ['babel-polyfill', path.join(__dirname, '../src/index.js')]
+    app: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
   },
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name]-[hash].js'
   },
   module: {
@@ -110,7 +110,7 @@ const config = {
 if (isDev) {
   config.devServer = {
     open: true,
-    contentBase: path.join(__dirname, '../dist'),
+    contentBase: path.resolve(__dirname, '../dist'),
     compress: false,
     host: 'localhost',
     port: 9000,
