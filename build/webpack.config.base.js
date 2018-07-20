@@ -10,7 +10,7 @@ const config = {
   target: 'web',
   mode: 'development',
   entry: {
-    app: path.join(__dirname, '../src/index.js')
+    app: ['babel-polyfill', path.join(__dirname, '../src/index.js')]
   },
   output: {
     path: path.join(__dirname, '../dist'),
