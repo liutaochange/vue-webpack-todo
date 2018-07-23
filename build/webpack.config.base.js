@@ -88,7 +88,7 @@ const config = {
       title: 'app',
       inject: true
     }),
-    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')]),
+    new CleanWebpackPlugin(['../dist']),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: isDev ? '"development"' : '"production"'
