@@ -2,7 +2,7 @@
   <div class="main">
     <div class="cover">
       <header-item></header-item>
-      <footers></footers>
+      <footer-item></footer-item>
       <p>{{text}}</p>
       <router-link to="/home">跳转至主页</router-link>
       <router-view></router-view>
@@ -12,7 +12,7 @@
 
 <script>
 import headerItem from './components/header.vue'
-import footers from './components/footer.jsx'
+import footerItem from './components/footer.jsx'
 export default {
   data () {
     return {
@@ -20,7 +20,8 @@ export default {
     }
   },
   components: {
-    headerItem
+    headerItem,
+    footerItem
   }
 }
 </script>
