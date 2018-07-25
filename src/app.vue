@@ -1,18 +1,19 @@
 <template>
   <div class="main">
-    <div class="cover">
-      <header-item></header-item>
-      <footer-item></footer-item>
-      <p>{{text}}</p>
-      <router-link to="/home">跳转至主页</router-link>
-      <router-view></router-view>
-    </div>
+    <div class="cover"></div>
+    <header-item></header-item>
+    <todo></todo>
+    <p>{{text}}</p>
+    <router-link to="/home">跳转至主页</router-link>
+    <router-view></router-view>
+    <footer-item></footer-item>
   </div>
 </template>
 
 <script>
 import headerItem from './components/header.vue'
 import footerItem from './components/footer.jsx'
+import todo from './components/todo.vue'
 export default {
   data () {
     return {
@@ -21,7 +22,8 @@ export default {
   },
   components: {
     headerItem,
-    footerItem
+    footerItem,
+    todo
   }
 }
 </script>

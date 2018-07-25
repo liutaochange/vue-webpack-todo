@@ -2,13 +2,13 @@ import '../assets/stylus/footer.styl'
 export default {
   data () {
     return {
-      author: 'jack'
+      copyright: '@copyright 2018'
     }
   },
   render () {
     return (
       <div id="footer">
-        <span>writeen by {this.author}</span>
+        <span>{this.copyright}</span>
       </div>
     )
   }
