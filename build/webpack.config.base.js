@@ -76,6 +76,7 @@ const config = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
           { loader: 'stylus-loader' }
         ]
       },

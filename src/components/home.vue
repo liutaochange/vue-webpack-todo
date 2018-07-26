@@ -15,9 +15,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.home {
-  font-size: 16px;
-  color: hotpink;
-}
+  .home
+    font-size: 16px;
+    color: hotpink;
 </style>
 
