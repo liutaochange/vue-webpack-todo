@@ -1,8 +1,8 @@
 <template>
   <div class="helper">
-    <span class="left">items left</span>
+    <span class="left">{{unFinshedLength}} items left</span>
     <span class="tabs">
-      <span v-for="(status,index) in states" :key="index" :class="[status, filter === status ? 'active' : '']"  @click="toggleFilter(status)">
+      <span v-for="(status,index) in states" :key="index" :class="[status, filter === status ? 'actived' : '']"  @click="toggleFilter(status)">
         {{status}}
       </span>
     </span>
@@ -16,6 +16,10 @@ export default {
     filter: {
       type: String,
       required: true
+    },
+    todos: {
+      type: Array,
+      required: true
     }
   },
   data () {
@@ -23,12 +27,17 @@ export default {
       states: ['all', 'active', 'completed']
     }
   },
+  computed: {
+    unFinshedLength () {
+      return this.todos.filter(todo => !todo.completed).length
+    }
+  },
   methods: {
-    toggleFilter () {
-      return ''
+    toggleFilter (status) {
+      this.$emit('toogleTodo', status)
     },
     clearAll () {
-      return ''
+      this.$emit('clearAllTodo')
     }
   }
 }
@@ -58,7 +67,7 @@ export default {
     width 200px
     display flex
     justify-content space-around
-    * 
+    span
       display inline-block
       padding 0 10px
       cursor pointer

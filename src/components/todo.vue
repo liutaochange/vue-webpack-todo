@@ -1,8 +1,10 @@
 <template>
   <section class="real-app">
     <input type="text" class="add-input" autofocus="autofocus" placeholder="接下去要做什么？" @keyup.enter="addTodo">
-    <item :todo="todo" @del="delItem"></item>
-    <tabs :filter="filter"></tabs>
+    <div v-for="(item, index) in filterTodos" :key="index">
+      <item :todo="item" @del="delItem"></item>
+    </div>
+    <tabs :filter="filter" :todos="todos" @toogleTodo="toogleTodo" @clearAllTodo="clearAllTodo"></tabs>
   </section>
 </template>
 
@@ -14,12 +16,16 @@ export default {
   data () {
     return {
       todos: [],
-      todo: {
-        id: 0,
-        completed: false,
-        content: 'this is todo'
-      },
       filter: 'all'
+    }
+  },
+  computed: {
+    filterTodos () {
+      if (this.filter === 'all') {
+        return this.todos
+      }
+      const completed = this.filter === 'completed'
+      return this.todos.filter(todo => completed === todo.completed)
     }
   },
   methods: {
@@ -32,7 +38,13 @@ export default {
       e.target.value = ''
     },
     delItem (id) {
-      return ''
+      this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
+    },
+    toogleTodo (state) {
+      this.filter = state
+    },
+    clearAllTodo () {
+      this.todos = this.todos.filter(todo => !todo.completed)
     }
   },
   components: {
