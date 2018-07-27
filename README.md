@@ -9,7 +9,7 @@
 ### 使用方法
 
 ```
-git clone https://github.com/liutaochange/vue-knowledge.git
+git clone https://github.com/liutaochange/vue-webpack-todo.git
 ```
 
 进入项目目录，运行
