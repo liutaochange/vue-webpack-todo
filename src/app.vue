@@ -3,8 +3,6 @@
     <div class="cover"></div>
     <header-item></header-item>
     <todo></todo>
-    <p>{{text}}</p>
-    <router-link to="/home">跳转至主页</router-link>
     <router-view></router-view>
     <footer-item></footer-item>
   </div>

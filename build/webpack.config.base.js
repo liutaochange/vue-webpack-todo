@@ -87,14 +87,6 @@ const config = {
       }
     }),
     new VueLoaderPlugin(),
-    new webpack.optimize.SplitChunksPlugin({
-      chunks: 'all',
-      minSize: 20000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true
-    }),
     new StyleLintPlugin(StyleOptions)
   ]
 }
@@ -139,8 +131,17 @@ if (isDev) {
   })
   config.plugins.push(
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash:8].css",
-      chunkFilename: "[id].css"
+      filename: "[name].[contenthash:8].css"
+    })
+  )
+  config.plugins.push(
+    new webpack.optimize.SplitChunksPlugin({
+      chunks: 'all',
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true
     })
   )
 }
