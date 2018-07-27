@@ -5,10 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const StyleOptions = require('../stylelint.config.js')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const config = {
   target: 'web',
-  mode: 'development',
   entry: {
     app: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
   },
@@ -71,15 +71,6 @@ const config = {
           }
         ]
       },
-      {
-        test: /\.styl(us)?$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
-          { loader: 'stylus-loader' }
-        ]
-      },
       { test: /\.jsx$/, use: 'babel-loader' }
     ]
   },
@@ -109,6 +100,15 @@ const config = {
 }
 
 if (isDev) {
+  config.module.rules.push({
+    test: /\.styl(us)?$/,
+    use: [
+      { loader: 'style-loader' },
+      { loader: 'css-loader' },
+      { loader: 'postcss-loader' },
+      { loader: 'stylus-loader' }
+    ]
+  })
   config.devServer = {
     open: true,
     contentBase: path.resolve(__dirname, '../dist'),
@@ -125,6 +125,22 @@ if (isDev) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
+  )
+} else {
+  config.output.filename = '[name].[chunkhash:8].js'
+  config.module.rules.push({
+    test: /\.styl(us)?$/,
+    use: ExtractTextWebpackPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        { loader: 'css-loader' },
+        { loader: 'postcss-loader' },
+        { loader: 'stylus-loader' }
+      ]
+    })
+  })
+  config.plugins.push(
+    new ExtractTextWebpackPlugin('style.[contentHash:8].css')
   )
 }
 
