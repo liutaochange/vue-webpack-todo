@@ -1,13 +1,19 @@
 <template>
   <div class="header">
-   <h1 class="title">{{text}}</h1>
+   <h1 class="title">{{newText}}</h1>
   </div>
 </template>
 <script>
 export default {
-  data () {
+  data ({getName}) {
     return {
-      text: 'JTODO'
+      text: 'vue',
+      newText: getName()
+    }
+  },
+  methods: {
+    getName () {
+      return 'hello vue'
     }
   }
 }
